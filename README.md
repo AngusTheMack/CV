@@ -23,6 +23,15 @@ The following book is prescribed. Although a PDF of the book, as well as other r
 author’s website](http://www.computervisionmodels.com/).
 
 * S.J.D. Prince, “Computer Vision: Models, Learning, and Inference.” Cambridge University Press, 2012.
+* Bibtex:
+```bibtex
+@book{CV,
+    author = {Prince, S.J.D.},
+    title= {{Computer Vision: Models Learning and Inference}},
+    publisher = {{Cambridge University Press}},
+    year = 2012,
+}
+```
 ## Objectives
 1. Recall, define and discuss the fundamental issues and challenges of computer vision
 2. Discuss the strengths and weaknesses of various popular computer vision methods and contrast their efficacy in different situations

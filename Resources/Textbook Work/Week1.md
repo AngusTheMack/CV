@@ -162,7 +162,66 @@ $$
 E\left[(x-E[x])^{2}\right] = E[x^2 -2 x\cdot E[x] + (E[x])^2] \\
  = E[x^2]
 $$
+# Chapter 3 - Notes
+Common Probability Distributions
+![Distributions](dist.png)
 
+Probability distributions (like the categorical and normal distributions) are useful for modelling visual data. THe other distributions are not to obvious:
+
+![Distributions Usage](dist1.png)
+
+## Bernoulli Distribution
+* Discrete distribution that models binary trials
+* Only two possible outcomes
+* Bern has a single parameter, which defines the probability of observing a success, or where $x=1$. 
+$$
+\begin{array}{l}{\operatorname{Pr}(x=0)=1-\lambda} \\ {\operatorname{Pr}(x=1)=\lambda}\end{array}
+$$
+* We can alternatively express this as:
+
+$$
+\operatorname{Pr}(x)=\lambda^{x}(1-\lambda)^{1-x}
+$$
+
+And finally, it can also take this form: 
+$$
+\operatorname{Pr}(x)=\operatorname{Bern}_{x}[\lambda]
+$$
+
+## Beta Distribution
+Is a continuous distribution defined on single variable $\lambda$ where $\lambda \in [0,1]$. It is suitable for representing uncertainty in the $\lambda$ of the Bern distribution.
+
+![Beta](beta.png)
+
+The beta distribution has two parameters $\alpha, \beta \in [0, \infin]$, which both take positive values and affect the shape of the curve as indicated in the image above. Mathematically the distribution has the form:
+$$
+\operatorname{Pr}(\lambda)=\frac{\Gamma[\alpha+\beta]}{\Gamma[\alpha] \Gamma[\beta]} \lambda^{\alpha-1}(1-\lambda)^{\beta-1}
+$$
+where $\Gamma[]$ is the gamma function, which is defined as:
+$$
+\Gamma[z]=\int_{0}^{\infty} t^{z-1} e^{-t} d t
+$$
+
+For short we abbreviate this to:
+$$
+\operatorname{Pr}(\lambda)=\operatorname{Beta}_{\lambda}[\alpha, \beta
+$$
+## Categorical Distribution
+A discrete distribution that determines the probability of observing one of $K$ possible outcomes. Hence, the Bernoulli is a special case of the categorical distribution when there are only two outcomes. 
+
+$$
+\operatorname{Pr}(x=k)=\lambda_{k}
+$$
+For short, we can use:
+$$
+\operatorname{Pr}(x)=\operatorname{Cat}_{x}[\boldsymbol{\lambda}]
+$$
+
+ALternatively, we can think of the data as taking values $x \in {e_1, e_2, ..., e_k}$, all elements of $e_k$ are zero except the kth which is one. We can write this as: 
+
+$$
+\operatorname{Pr}\left(\mathbf{x}=\mathbf{e}_{k}\right)=\prod_{j=1}^{K} \lambda_{j}^{x_{j}}=\lambda_{k}
+$$ 
 # Chapter 3 - Problems
 1. Consider a variable $x$ which is Bernoulli distributed with parameter $\lambda$. Show that the mean $E[x]$ is $\lambda$ and the variance $E[(x − E[x])^2$ is $λ(1 − λ)$.
 
@@ -195,7 +254,7 @@ $$
 \frac{\delta}{\delta \lambda} (\frac{\Gamma[\alpha+\beta]}{\Gamma[\alpha] \Gamma[\beta]} \lambda^{\alpha-1}(1-\lambda)^{\beta-1}) \\
 \frac{\Gamma[\alpha+\beta]}{\Gamma[\alpha] \Gamma[\beta]} \cdot  \frac{\delta}{\delta \lambda} (\lambda^{\alpha-1}\cdot(1-\lambda)^{\beta-1}) \\
 \frac{\Gamma[\alpha+\beta]}{\Gamma[\alpha] \Gamma[\beta]} \cdot ((\alpha-1)\lambda^{\alpha-2} (1-\lambda)^{\beta-1} + \lambda^{\alpha-1}(\beta-1)(1-\lambda)^{\beta-2}(-1))\\
-0  =  (\alpha-1)\lambda^{\alpha-2} (1-\la mbda)^{\beta-1} - \lambda^{\alpha-1}(\beta-1)(1-\lambda)^{\beta-2} \\
+0  =  (\alpha-1)\lambda^{\alpha-2} (1-\lambda)^{\beta-1} - \lambda^{\alpha-1}(\beta-1)(1-\lambda)^{\beta-2} \\
 \lambda^{\alpha-2}(a-\lambda)^{\beta-2}((\beta-1)(1-\lambda)-\lambda(\beta-1))= 0\\
 (\beta - 1)(1-\lambda) - \lambda(\beta - 1) = 0 \\
 (\beta - 1)-\lambda(\beta-1) - \lambda(\beta-1) = 0\\
@@ -212,7 +271,4 @@ $$
 \begin{aligned} E[\lambda]=\mu &=\frac{\alpha}{\alpha+\beta} \\ E\left[(\lambda-\mu)^{2}\right]=\sigma^{2} &=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)} \end{aligned}
 $$
 
-We may wish to choose the parameters $α$ and $\beta$ so that the distribution has a particular mean $μ$ and variance $σ^2$. Derive suitable expressions for $α$ and $β$ in terms of $μ$ and $σ^2$ .
-
-$$
-\mu = \frac{\alpha}{\alpha + \beta} \\
+We may wish to choose the parameters $α$ and $\beta$ so that the distribution has a particular mean $μ$ and variance $σ^2$. Derive suitable expressions for $α$ and $β$ in terms of $μ$ and $σ^2$.

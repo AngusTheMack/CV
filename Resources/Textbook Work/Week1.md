@@ -265,10 +265,11 @@ $$
 $$
 
 
-1. The mean and variance of the beta distribution are given by the expressions
+3. The mean and variance of the beta distribution are given by the expressions
 
 $$
 \begin{aligned} E[\lambda]=\mu &=\frac{\alpha}{\alpha+\beta} \\ E\left[(\lambda-\mu)^{2}\right]=\sigma^{2} &=\frac{\alpha \beta}{(\alpha+\beta)^{2}(\alpha+\beta+1)} \end{aligned}
 $$
 
 We may wish to choose the parameters $α$ and $\beta$ so that the distribution has a particular mean $μ$ and variance $σ^2$. Derive suitable expressions for $α$ and $β$ in terms of $μ$ and $σ^2$.
+

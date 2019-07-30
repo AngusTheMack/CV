@@ -1,6 +1,11 @@
 # Computer Vision - COMS4036A
 Lectures and Course Content by [Dr Richard Klein](https://www.wits.ac.za/staff/academic-a-z-listing/k/richardkleinwitsacza/)
 
+# To Do
+* [ ] Proofs For Distributions
+* [ ] Chapter 3, Conjugacy Questions
+* [ ] Distribution Sliders
+
 # Getting Started
 To run any of the code in this repository, install the necessary requirements with `conda` by running the following command:
 ```

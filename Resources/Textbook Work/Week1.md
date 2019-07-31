@@ -222,6 +222,22 @@ ALternatively, we can think of the data as taking values $x \in {e_1, e_2, ..., 
 $$
 \operatorname{Pr}\left(\mathbf{x}=\mathbf{e}_{k}\right)=\prod_{j=1}^{K} \lambda_{j}^{x_{j}}=\lambda_{k}
 $$ 
+
+## Conjugacy
+* The Beta distribution can represent probabilities over the parameters of the Bernoulli
+* The Dirichlet defines a distribution over the parameters of the categorical
+* Normal-scaled inverse gamma and the univariate normal
+* Normal inverse wishart the the Multivariate normal
+
+These pairs were carefully chosen because they have a special relationship: in each case, the former distribution is *conjugate* to the latter. 
+* The Beta is conjugate to the Bernoulli
+* The Dirichlet is conjugate to the categorical etc
+
+
+When we multiply a distribution with its conjugate the result is proportional to a new distribution which has the same form as the conjugate, e.g.:
+$$
+\operatorname{Bern}_x[\lambda]\cdot\operatorname{Beta}_\lambda[\alpha,\beta] = k(x,\alpha,\beta)*\operatorname{Beta}_\lambda[\alpha,\beta]
+$$
 # Chapter 3 - Problems
 1. Consider a variable $x$ which is Bernoulli distributed with parameter $\lambda$. Show that the mean $E[x]$ is $\lambda$ and the variance $E[(x − E[x])^2$ is $λ(1 − λ)$.
 

@@ -236,8 +236,22 @@ These pairs were carefully chosen because they have a special relationship: in e
 
 When we multiply a distribution with its conjugate the result is proportional to a new distribution which has the same form as the conjugate, e.g.:
 $$
-\operatorname{Bern}_x[\lambda]\cdot\operatorname{Beta}_\lambda[\alpha,\beta] = k(x,\alpha,\beta)*\operatorname{Beta}_\lambda[\alpha,\beta]
+\operatorname{Bern}_x[\lambda]\cdot\operatorname{Beta}_\lambda[\alpha,\beta] = k(x,\alpha,\beta)*\operatorname{Beta}_\lambda[\widetilde{\alpha},\widetilde{\beta}]
 $$
+
+How to add tilda to put it on top?
+
+* $k$ is a scaling factor that is constant with respect to the variable of interest $\lambda$. 
+
+The proof of the above is:
+$$
+\begin{aligned} \operatorname{Bern}_{x}[\lambda] \cdot \operatorname{Bet} a_{\lambda}[\alpha, \beta] &=\lambda^{x}(1-\lambda)^{1-x} \frac{\Gamma[\alpha+\beta]}{\Gamma[\alpha] \Gamma[\beta]} \lambda^{\alpha-1}(1-\lambda)^{\beta-1} \\ &=\frac{\Gamma[\alpha+\beta]}{\Gamma[\alpha] \Gamma[\beta]} \lambda^{x+\alpha-1}(1-\lambda)^{1-x+\beta-1} \\ &=\frac{\Gamma[\alpha+\beta]}{\Gamma[\alpha] \Gamma[\beta]} \frac{\Gamma[x+\alpha] \Gamma[1-x+\beta]}{\Gamma[x+\alpha+1-x+\beta]} \operatorname{Beta}_{\lambda}[x+\alpha, 1-x+\beta] \\
+&= k(x,\alpha,\beta) * \operatorname{Beta}_\lambda[\widetilde{\alpha},\widetilde{\beta}] \end{aligned}
+$$
+
+* In the third line, we have both multiplied and divided by the constant associated
+* This relationship is important because we take products of distributions during both learning (fitting) and evaluating the model (assessing probability of new data under fitted distribution).
+* This conjugate relationship makes it easier to fit these distributions to observed data and evaluate new data under the fitted model
 # Chapter 3 - Problems
 1. Consider a variable $x$ which is Bernoulli distributed with parameter $\lambda$. Show that the mean $E[x]$ is $\lambda$ and the variance $E[(x − E[x])^2$ is $λ(1 − λ)$.
 

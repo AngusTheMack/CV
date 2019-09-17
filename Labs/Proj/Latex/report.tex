@@ -80,7 +80,7 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 
 \begin{document}
 \title{COMS4036A Project - Gaussian Mixture Models}
-\author{Angus Mackenzie}
+\author{Angus Mackenzie - 1106817}
 \date{\today} 
 \maketitle 
 %\thispagestyle{empty}
@@ -93,23 +93,78 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 %\newpage
 \pagenumbering{arabic}
 \section{Introduction}
-In this project we were tasked with building a Gaussian Mixture Model (GMM) \cite{princeCVMLI2012} that can detect coins in an image. The aim was to produce a mask that would show coin pixels in white and desk pixels in black. 
-Computer Vision \cite{princeCVMLI2012}, Approach, Technical Details: Covariance, Colour Space, 1-10 Components, Accuracy. Investigate resulting component distributions and provide analysis on their position and co-variances: do the components align with different types of coins? 
+In this project we were tasked with building a Gaussian Mixture Model (GMM) \cite{princeCVMLI2012} that can detect coins in an image. The aim was to produce a mask that would show coin pixels in white and desk pixels in black.
 
 \section{Experimental Methodology}
-\subsection{Approach}
-The fundamental algorithm of a GMM is Expectation Maximisation \cite{princeCVMLI2012}, which consist of a expectation step (E-step) and a Maximisation step (M-step). Initially, the two algorithms for both steps were completed in order to test the accuracy of their output on dummy data. 
+\subsection{Data Exploration}
+Initially a portion of the data was loaded and some cursory exploration done. Then the remaining images were loaded, normalised, and flattened. Finally, they were split into a training set and test set, with 80\% of the images set aside for training. 
 
-Then a method for reading in images and masks for training was created. Once those were in place a simple bit of research was one in order to ascertain which colour space would be modelled easiest. 
+\subsection{Algorithms}
+The fundamental algorithm of a GMM is Expectation Maximisation \cite{princeCVMLI2012}, which consist of two steps, the Expectation step (E-step) and the Maximisation step (M-step). 
 
-After that the images were run through the algorithm and the output and accuracy of the output ascertained.
+The E-step is where we find the posterior probability distribution of the hidden variable. This is represented as:
+$$
+\begin{aligned} q_{i}\left(h_{i}\right)=\operatorname{Pr}\left(h_{i}=k | \mathbf{x}_{i}, \boldsymbol{\theta}^{[t]}\right) &=\frac{\operatorname{Pr}\left(\mathbf{x}_{i} | h_{i}=k, \boldsymbol{\theta}^{[t]}\right) \operatorname{Pr}\left(h_{i}=k, \boldsymbol{\theta}^{[t]}\right)}{\sum_{j=1}^{K} \operatorname{Pr}\left(\mathbf{x}_{i} | h_{i}=j, \boldsymbol{\theta}^{[t]}\right) \operatorname{Pr}\left(h_{i}=j, \boldsymbol{\theta}^{[t]}\right)} \\ &=\frac{\lambda_{k} \operatorname{Norm}_{\mathbf{x}_{i}}\left[\boldsymbol{\mu}_{k}, \Sigma_{k}\right]}{\sum_{j=1}^{K} \lambda_{j} \operatorname{Norm}_{\mathbf{x}_{i}}\left[\boldsymbol{\mu}_{j}, \Sigma_{j}\right]} \\ &=r_{i k} \end{aligned}
+$$ \cite{princeCVMLI2012}.
+
+The M-step maximises our parameters, this can be represented as:
+$$
+\begin{aligned} \lambda_{k}^{[t+1]} &=\frac{\sum_{i=1}^{I} r_{i k}}{\sum_{j=1}^{K} \sum_{i=1}^{I} r_{i j}} \\ \boldsymbol{\mu}_{k}^{[t+1]} &=\frac{\sum_{i=1}^{I} r_{i k} \mathbf{x}_{i}}{\sum_{i=1}^{I} r_{i k}} \\ \Sigma_{k}^{[t+1]} &=\frac{\sum_{i=1}^{I} r_{i k}\left(\mathbf{x}_{i}-\boldsymbol{\mu}_{k}^{[t+1]}\right)\left(\mathbf{x}_{i}-\boldsymbol{\mu}_{k}^{[t+1]}\right)^{T}}{\sum_{i=1}^{I} r_{i k}} \end{aligned}
+$$
+\cite{princeCVMLI2012}
+
+Initially, the two methods for both the E and M steps were completed in order to test the accuracy of their output on dummy data.
+
+\subsection{Testing}
+ Training images were run through the EM algorithm with the number of components set to 2 in order to ascertain whether the system was functional. After that models with components of value 1-10 were trained, and their accuracy over all the test data averaged. 
 
 \section{Results \& Analysis}
+In the data exploration phase of the methodology, the main goal was to ascertain what colour space would be most beneficial for the GMM. A plot containing the different  colour components was created:
+
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth]{Components}
+    \centering
+\end{figure}
+
+From this plot it can be seen that the different components add different information. I decided to use the Value component from the HSV colour space as colour information in the RGB colour space can be more noisy than HSV information. 
+
+The E-step was tested using data from the 2017 Master's students Exam memo \cite{exam}, it achieved the correct results. The same can be said of the M-step, using the 2017 Test 2 paper memo \cite{test}.
+
+The first stage of testing was simply to verify that the GMM could produce meaningful outputs. This was achieved, with some results better than others:
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{98}
+    \centering
+\end{figure}
+
+In the above image we can see that the mask created from the image is very close to the target. There are slight bits of noise that reduce the accuracy marginally, but that can be remedied through the use of digital image processing techniques like filtering.
+
+\begin{figure}[H]
+    \includegraphics[width=\textwidth]{85}
+    \centering
+\end{figure}
+
+The above mask has a lower accuracy, as the items in the photo have been misclassified by the GMM as coins, and thus made white.
+
+Through testing it is apparent that the amount of components does little to increase the accuracy of the GMM in any meaningful way, and only increases the time taken to process new data. 
+
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth]{acuracyc}
+    \centering
+\end{figure}
+
+The above graph shows the number of components used by the GMM vs the accuracy, and the changes in accuracy are miniscule for the added components. 
+
+\begin{figure}[H]
+    \includegraphics[width=0.7\textwidth]{Timetaken}
+    \centering
+\end{figure}
+
+
+There is a strong direct relation between the number of components used by the GMM and the time elapsed during the testing phase.
 
 \section{Conclusion}
+Thus, it can be seen that a GMM can work surprisingly well as a means of masking and image segmentation for basic tasks.
 
-
-%\bibliographystyle{apalike} I prefer plain references, but I will ask Hairong if that is okay
 \bibliographystyle{plain}
 \bibliography{references}
 \end{document} 

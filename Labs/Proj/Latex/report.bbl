@@ -1,5 +1,19 @@
 \begin{thebibliography}{1}
 
+\bibitem{exam}
+R~Klein.
+\newblock Computer vision exam.
+\newblock \url{https://moodle.ms.wits.ac.za/moodle/course/view.php?id=73},
+  2017.
+\newblock Online; accessed 17 September 2019.
+
+\bibitem{test}
+R~Klein.
+\newblock Computer vision test.
+\newblock \url{https://moodle.ms.wits.ac.za/moodle/course/view.php?id=73},
+  2017.
+\newblock Online; accessed 17 September 2019.
+
 \bibitem{princeCVMLI2012}
 S.J.D. Prince.
 \newblock {\em {Computer Vision: Models Learning and Inference}}.

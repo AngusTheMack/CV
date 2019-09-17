@@ -93,11 +93,16 @@ escapeinside={\%*}{*)}          % if you want to add a comment within your code
 %\newpage
 \pagenumbering{arabic}
 \section{Introduction}
+In this project we were tasked with building a Gaussian Mixture Model (GMM) \cite{princeCVMLI2012} that can detect coins in an image. The aim was to produce a mask that would show coin pixels in white and desk pixels in black. 
 Computer Vision \cite{princeCVMLI2012}, Approach, Technical Details: Covariance, Colour Space, 1-10 Components, Accuracy. Investigate resulting component distributions and provide analysis on their position and co-variances: do the components align with different types of coins? 
-\section{Background}
-    
-\section{Experimental Methodology}
 
+\section{Experimental Methodology}
+\subsection{Approach}
+The fundamental algorithm of a GMM is Expectation Maximisation \cite{princeCVMLI2012}, which consist of a expectation step (E-step) and a Maximisation step (M-step). Initially, the two algorithms for both steps were completed in order to test the accuracy of their output on dummy data. 
+
+Then a method for reading in images and masks for training was created. Once those were in place a simple bit of research was one in order to ascertain which colour space would be modelled easiest. 
+
+After that the images were run through the algorithm and the output and accuracy of the output ascertained.
 
 \section{Results \& Analysis}
 
